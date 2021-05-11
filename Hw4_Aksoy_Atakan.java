@@ -2,12 +2,7 @@
 //200201009
 //Computer Engineering
 
-
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class Hw4_Aksoy_Atakan {
 
@@ -74,7 +69,24 @@ public class Hw4_Aksoy_Atakan {
         System.out.println("4- The reversed version of the array list is: " + reversed);    //printing result 4
     }
 
+    public static ArrayList<String> repeatElements(ArrayList<String> list, int k) { //Part 3's method
+        final String first = list.get(0);   //defining variable
+        if (k <= 0) {  //condition for check if k is equal or less than 0
+            list.clear();   //clearing the list
+            return list;    //returning the cleared list
+        }
+        while (true) {  //infinite loop
 
+            for (int j = 0; j < k; j++) {   //loop for count
+                list.add(list.get(0));  //adding first item to the list
+            }
+            list.remove(0); //removing first item
+            if (first.equals(list.get(0))) {    //condition for break the loop
+                break;  //breaking the loop
+            }
+        }
+        return list;    //returning the result
+    }
 
     public static void main(String[] args) {
         ///////////////////////////////////////////////////////////////////////////
@@ -107,11 +119,55 @@ public class Hw4_Aksoy_Atakan {
         arrayListSummary(arrList);  //calling method
         /////////////////////////////////////////////////////////////////////////
         //Part-3
+        System.out.println("Part-3:");  //printing that we are in part 3
+        Scanner str = new Scanner(System.in);   //scanner code
+        ArrayList<String> list = new ArrayList<String>();   //creating an arraylist
+        System.out.print("Enter number of strings: ");  //asking for input
+        int nm = str.nextInt();     //taking input
+        System.out.println("Enter " + nm + " strings:");    //asking for input
+        Scanner take = new Scanner(System.in);  //scanner code
+        for (int i = 0; i < nm; i++) {  //loop for count
+            String string = take.nextLine();    //taking input
+            list.add(string);   //adding inputs to list
+        }
+        System.out.print("Enter the value of k (stretch value): "); //asking for input
+        int k = take.nextInt(); //taking input
+        System.out.println("The original arraylist is: " + list);  //printing the results
+        System.out.println("The repeated arraylist is: " + repeatElements(list, k));
 
-
-
-
-
+        ////////////////////////////////////////////////////////////////////////
+        //Part-4
+        System.out.println("Part-4:");  //printing that we are in part 4
+        Scanner takeArr = new Scanner(System.in);   //scanner code
+        System.out.print("Enter the size of array (n): ");  //asking for input
+        int n = takeArr.nextInt();  //taking input
+        int[] myArray = new int[n]; //creating an array
+        System.out.println("Enter " + n + " integers:");    //asking for input
+        for (int i = 0; i < n; i++) {   //loop for take inputs
+            int takeInt = takeArr.nextInt();    //taking input
+            myArray[i] = takeInt;   //adding inputs to array
+        }
+        System.out.println("1- The values of myArray are: " + Arrays.toString(myArray));    //printing result
+        double sum = 0; //defining variable
+        ArrayList<Integer> myArrayList = new ArrayList<Integer>();  //creating an arraylist
+        for (int nums: myArray) {   //loop for iterate
+            sum += nums;    //adding items to sum
+            if (!myArrayList.contains(nums)) {  //condition for not to take duplications into arraylist
+                myArrayList.add(nums);  //adding items without duplications to arraylist
+            }
+        }
+        int sumInt = (int) sum; //converting double to int
+        System.out.println("2- The sum is: " + sumInt + ". The mean is: " + sum/n); //printing result
+        System.out.println("3- The values of myArrayList are: " + myArrayList); //printing result
+        sumInt = 0; //defining variables
+        sum = 0;
+        for (int numlist: myArrayList) {    //loop for iterate
+            sumInt += numlist;  //adding items to sum
+            sum += numlist;
+        }
+        double mean = sum/myArrayList.size();   //calculating mean
+        System.out.println("4- The sum is: " + sumInt + ". The mean is: " + mean);   //printing result
+        /////////////////////////////////////////////////////////////////////////////////
 
 
     }
